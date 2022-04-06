@@ -153,10 +153,10 @@
         android:id="@+id/view_haid2"
         android:layout_width="69dp"
         android:layout_height="wrap_content"
-        android:layout_goneMarginTop="50dp"
         android:text="view_haid2"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        tools:layout_editor_absoluteY="63dp" />
+        tools:layout_editor_absoluteY="63dp"
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
