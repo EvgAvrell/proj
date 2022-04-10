@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
 
-        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+
 
 
     }
