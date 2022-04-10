@@ -2,12 +2,17 @@ package com.example.androidstartproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.RadioButton;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +31,26 @@ public class Calculator extends AppCompatActivity {
 
         final Button calculate = (Button) findViewById(R.id.calc);
 
+   /*     // Context тренинг
+        TextView textView = new TextView(this);
+        ListAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),);
+
+        ////
+        getSystemService(LAYOUT_INFLATER_SERVICE);
+
+         ///
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("PREFS", MODE_PRIVATE);
+
+        ////*/
+
+
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogcatTag, "Button have been pushed");
                 calcuclateAnswe();
+                Intent i = new Intent(Calculator.this, MainActivity.class);
+                startActivity(i);
 
             }
         });
@@ -123,6 +143,9 @@ public class Calculator extends AppCompatActivity {
         Log.d(LogcatTag, "the result of operation is:" + solution);
 
         answer.setText("The answer is" + solution);
+
+        Context contextApp = getApplicationContext();
+        Context context = getBaseContext();
 
     }
 }
