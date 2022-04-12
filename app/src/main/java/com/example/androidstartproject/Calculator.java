@@ -16,6 +16,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class Calculator extends AppCompatActivity {
 
     public static final String  LogcatTag = "CALCULATOR ACTIVITY";
@@ -48,7 +50,23 @@ public class Calculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(LogcatTag, "Button have been pushed");
-                calcuclateAnswe();
+                try {
+                    calcuclateAnswe();
+                }
+                catch (Exception e){
+
+                    //перерывание
+                    /* e.printStackTrace();
+                    Toast.makeText(Calculator.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    finish();*/
+
+                    // восстоновление
+                    e.printStackTrace();
+                    Toast.makeText(Calculator.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    dropFields();
+
+                }
+
                 Intent i = new Intent(Calculator.this, MainActivity.class);
                 //startActivity(i);
 
@@ -89,7 +107,7 @@ public class Calculator extends AppCompatActivity {
         Log.d(Lifecycle, "I'm onResume and i'm started");
     }
 
-    private void calcuclateAnswe(){
+    private void dropFields(){
         EditText numOne = (EditText) findViewById(R.id.editTextNumberDecimal);
         EditText numTwo = (EditText) findViewById(R.id.editTextNumberDecimal2);
 
@@ -98,19 +116,33 @@ public class Calculator extends AppCompatActivity {
         RadioButton multiple = (RadioButton) findViewById(R.id.multiple);
         RadioButton divide = (RadioButton) findViewById(R.id.divide);
 
- /*       numOne.setText("0");
+        numOne.setText("0");
         numTwo.setText("0");
-        add.setChecked(true);*/
+        add.setChecked(true);
+
+        TextView answer = (TextView) findViewById(R.id.result);
+
+        answer.setText(" Now we have problems. Try againg later ");
+    }
+
+    private void calcuclateAnswe() throws ArithmeticException, IOException {
+        EditText numOne = (EditText) findViewById(R.id.editTextNumberDecimal);
+        EditText numTwo = (EditText) findViewById(R.id.editTextNumberDecimal2);
+
+        RadioButton add = (RadioButton) findViewById(R.id.add);
+        RadioButton sub = (RadioButton) findViewById(R.id.subtract);
+        RadioButton multiple = (RadioButton) findViewById(R.id.multiple);
+        RadioButton divide = (RadioButton) findViewById(R.id.divide);
+
+        numOne.setText("0");
+        numTwo.setText("0");
+        add.setChecked(true);
 
         TextView answer = (TextView) findViewById(R.id.result);
 
         Log.d(LogcatTag, "All view have been founded");
 
-     /*   try {
-            int a = 25 / 0;
-        }catch (ArithmeticException e) {
-            e.printStackTrace();
-        }*/
+
 
         float numone = 0;
         float numtwo = 0;
@@ -153,8 +185,11 @@ public class Calculator extends AppCompatActivity {
 
         answer.setText("The answer is" + solution);
 
-        Context contextApp = getApplicationContext();
-        Context context = getBaseContext();
+
+        switch ((int) Math.random()*2){
+            case 0 : throw new ArithmeticException("i'am generated arithmetical exception");
+            case 1 : throw new IOException("i'am generated ioexception exception");
+        }
 
     }
 }
