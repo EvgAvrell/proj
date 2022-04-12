@@ -186,9 +186,11 @@ public class Calculator extends AppCompatActivity {
         answer.setText("The answer is" + solution);
 
 
-        switch ((int) Math.random()*2){
-            case 0 : throw new ArithmeticException("i'am generated arithmetical exception");
-            case 1 : throw new IOException("i'am generated ioexception exception");
+        switch ((int) (Math.random()*3)){
+            case 0 :
+                throw new ArithmeticException("i'am generated arithmetical exception");
+            case 1 :
+                throw new IOException("i'am generated ioexception exception");
         }
 
     }
