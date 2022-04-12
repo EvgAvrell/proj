@@ -50,7 +50,7 @@ public class Calculator extends AppCompatActivity {
                 Log.d(LogcatTag, "Button have been pushed");
                 calcuclateAnswe();
                 Intent i = new Intent(Calculator.this, MainActivity.class);
-                startActivity(i);
+                //startActivity(i);
 
             }
         });
@@ -98,22 +98,29 @@ public class Calculator extends AppCompatActivity {
         RadioButton multiple = (RadioButton) findViewById(R.id.multiple);
         RadioButton divide = (RadioButton) findViewById(R.id.divide);
 
-
+ /*       numOne.setText("0");
+        numTwo.setText("0");
+        add.setChecked(true);*/
 
         TextView answer = (TextView) findViewById(R.id.result);
 
         Log.d(LogcatTag, "All view have been founded");
 
+     /*   try {
+            int a = 25 / 0;
+        }catch (ArithmeticException e) {
+            e.printStackTrace();
+        }*/
 
         float numone = 0;
         float numtwo = 0;
         String num1 = numOne.getText().toString();
         String num2 = numTwo.getText().toString();
-        if (num1.equals("") && num1 != null) {
+        if (!num1.equals("") && num1 != null) {
             numone = Integer.parseInt(numOne.getText().toString());
         }
 
-        if (num2.equals("") && num2 != null) {
+        if (!num2.equals("") && num2 != null) {
             numtwo = Integer.parseInt(numTwo.getText().toString());
         }
 
